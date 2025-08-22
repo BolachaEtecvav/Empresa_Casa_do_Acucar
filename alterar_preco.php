@@ -82,7 +82,7 @@
         button { 
             padding: 10px 15px;
             background:rgb(19, 10, 100);
-            color: black; 
+            color: white; 
             font-size: 15px;
             border-radius: 10px; 
             cursor: pointer; 
@@ -124,4 +124,5 @@
     </div>
 </body>
 </html>
+
 
