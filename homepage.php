@@ -10,7 +10,7 @@
     <title>Homepage</title>
          <style>
         body { 
-            background-color:rgb(130, 148, 243);
+            background-color:rgba(255, 254, 186, 1);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,13 +45,13 @@
         }
         
         a:hover{
-            color: white;
+            color:rgba(250, 199, 255, 1);
         }
 
         button { 
             padding: 10px 15px;
-            background:rgb(19, 10, 100);
-            color: white; 
+            background:rgba(255, 170, 121, 1);
+            color: black;
             font-size: 15px;
             border-radius: 10px; 
             cursor: pointer; 
@@ -61,7 +61,7 @@
 <body>
      
     <div class="container">
-        <h1>Bem-vindo ao Sistema Papelaria</h1>
+        <h1>Bem-vinda a Casa do Açúcar</h1>
         <p>Sua Função é: <?php echo $_SESSION['funcao']; ?></p><br>
         <ul>
                 <li><a href="alterar_senha.php">Alterar Senha</a></li>
@@ -76,3 +76,4 @@
     </div>
 </body>
 </html>
+
