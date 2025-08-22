@@ -18,7 +18,7 @@
     <title>Selecionar Produto - Preço</title>
  <style>
         body { 
-            background-color:rgb(130, 148, 243);
+            background-color:rgba(255, 254, 186, 1);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -64,8 +64,8 @@
         
         button { 
             padding: 10px 15px;
-            background:rgb(19, 10, 100);
-            color: white; 
+            background-color:rgba(255, 170, 121, 1);
+            color: black; 
             font-size: 15px;
             border-radius: 10px; 
             cursor: pointer; 
@@ -78,7 +78,7 @@
         }
         
         a:hover{
-            color: white;
+            color:rgba(250, 199, 255, 1);
         }
     </style>
 </head>
@@ -110,4 +110,5 @@
         <p><a href="homepage.php">Voltar HomePage</a></p>
     </div>
 </body>
+
 </html>
