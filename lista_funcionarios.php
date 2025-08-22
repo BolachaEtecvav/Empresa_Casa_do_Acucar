@@ -11,13 +11,13 @@
 
         echo 
     "<style>
-        body {
+ body {
             margin: 20px;
-            background-color: #f5f5f5;
+            background-color:rgba(255, 254, 186, 1);
         }
         h2 {
             font-size: 40px;
-            color: #333;
+            color: black;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -30,29 +30,29 @@
             background-color: white;
         }
         th {
-            background-color:rgb(19, 10, 100);
+            background-color:rgba(255, 170, 121, 1);
             color: white;
             padding: 12px;
             text-align: left;
         }
         td {
             padding: 10px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid black;
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color:rgba(255, 254, 186, 1);
         }
         tr:hover {
-            background-color: #e9e9e9;
+            background-color:rgba(250, 199, 255, 1);
         }
         a {
             font-size: 20px;
-            color:rgb(19, 10, 100);
+            color: black;
             text-decoration: none;
             font-weight: bold;
         }
         a:hover {
-            color: red;
+            color:rgba(250, 199, 255, 1);
         }
         .actions {
             text-align: center;
@@ -63,12 +63,12 @@
             margin: 20px auto;
             padding: 10px;
             text-align: center;
-            background-color=rgb(19, 10, 100);
+            background-color:rgba(255, 254, 186, 1);
             color: white;
             border-radius: 5px;
         }
         .back-link:hover {
-            background-color:rgb(19, 10, 100);
+            background-color:rgba(250, 199, 255, 1);
             text-decoration: none;
         }
     </style>";
@@ -91,4 +91,5 @@
     }
     echo "</table>";
     echo "<br><a href='homepage.php'>Voltar a HomePage</a>";
+
 ?>
