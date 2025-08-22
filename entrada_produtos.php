@@ -41,7 +41,7 @@
     <title>Entrada de Produtos</title>
      <style>
         body { 
-            background-color:rgb(130, 148, 243);
+            background-color:rgba(255, 254, 186, 1);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -82,7 +82,7 @@
         }
         
         a:hover{
-            color: white;
+            color: rgba(250, 199, 255, 1);
         }
     </style>
 </head>
@@ -112,4 +112,5 @@
         <p><a href="homepage.php">Voltar Homepage</a></p>
     </div>
 </body>
+
 </html>
