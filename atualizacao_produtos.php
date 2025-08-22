@@ -43,9 +43,7 @@
     <title>Editar Informações</title>
          <style>
         body { 
-            background-image: url("img/funco.jpg");
-            background-position: center center;
-            background-size: cover;
+            background-color:rgba(255, 254, 186, 1);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -96,3 +94,4 @@
     </div>
 </body>
 </html>
+
