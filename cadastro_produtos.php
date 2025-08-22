@@ -54,6 +54,16 @@
             border-radius: 10px; 
             cursor: pointer; 
         }
+             
+        a {
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        a:hover{
+            color: rgba(250, 199, 255, 1);
+        }
     </style>
 </head>
 <body>
@@ -92,4 +102,5 @@
     }
 
 ?>
+
 
