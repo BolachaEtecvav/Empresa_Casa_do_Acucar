@@ -15,9 +15,7 @@
     <title>Cadastros</title>
          <style>
         body { 
-            background-image: url("img/funco.jpg");
-            background-position: center center;
-            background-size: cover;
+            background-color:rgba(255, 254, 186, 1);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -69,7 +67,7 @@
         }
         
         a:hover{
-            color: blue;
+            color: rgba(250, 199, 255, 1);
         }
     </style>
 </head>
@@ -128,4 +126,5 @@
             echo "Erro: " . $stmt->error;
         }
     }
+
 ?>
