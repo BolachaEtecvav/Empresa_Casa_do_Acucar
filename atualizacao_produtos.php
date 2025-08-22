@@ -76,8 +76,8 @@
         
         button { 
             padding: 10px 15px;
-            background:rgb(19, 10, 100);
-            color: white; 
+            background-color:rgba(255, 170, 121, 1);
+            color: black; 
             font-size: 15px;
             border-radius: 10px; 
             cursor: pointer; 
@@ -94,4 +94,5 @@
     </div>
 </body>
 </html>
+
 
