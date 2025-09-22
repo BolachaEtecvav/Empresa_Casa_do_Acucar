@@ -3,11 +3,23 @@
     include 'conexao.php';
     include 'sessao.php';
 
-    $resultado = $conn->query("SELECT idProduto, nomeProduto, quantidade, preco FROM produtos");
+    if ($_SESSION['funcao'] != 'repositor' && $_SESSION['funcao'] != 'gerente') {
+    exit("Acesso negado.");
+    }
 
-    echo 
-    "<style>
-               body {
+    $resultado = $conn->query("SELECT idProduto, nomeProduto, quantidade, preco FROM produtos");
+ ?>
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Produtos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+        body {
             margin: 20px;
             background-color:rgba(255, 254, 186, 1);
         }
@@ -67,23 +79,42 @@
             background-color:rgba(250, 199, 255, 1);
             text-decoration: none;
         }
-    </style>";
-    echo "<h2>Produtos Cadastrados</h2>";
-    echo "<table border='3'>
-    <tr><th >ID</th><th>Nome Produto</th><th>Quantidade</th><th>Preço</th><th>Ações</th></tr>";
+    </style>
+</head>
+<body>
 
-    while ($linha = $resultado->fetch_assoc()) {
-        echo "<tr>
-            <td>{$linha['idProduto']}</td>
-            <td>{$linha['nomeProduto']}</td>
-            <td>{$linha['quantidade']}</td>
-            <td>{$linha['preco']}</td>
+    <a href='dashboard.php'>Voltar</a><br>
+
+    <h2>Lista de Produtos</h2>
+
+    <div class="links">
+        <a href='registrar_entrada.php'>Registrar Entrada de Produtos</a>
+        <?php if ($_SESSION['funcao'] == 'gerente'): ?>
+            <a href='cadastrar_produto.php'>Cadastrar Produtos</a>
+            <a href='atualizar_preco.php'>Atualizar Preços</a>
+        <?php endif; ?>
+    </div>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+        </tr>
+        <?php while ($linha = $resultado->fetch_assoc()): ?>
+        <tr>
+            <td><?= $linha['idProduto'] ?></td>
             <td>
-                <a href='atualizacao_produtos.php?id={$linha['idProduto']}'>Editar</a>
+            <div class="produto-info">
+                <span><?= $linha['nomeProduto'] ?></span>
+            </div>
             </td>
-        </tr>";
-    }
-    echo "</table>";
-    echo "<br><a href='homepage.php'>Voltar a HomePage</a>";
+            <td>R$ <?= number_format($linha['preco'], 2, ',', '.') ?></td>
+            <td><?= $linha['quantidade'] ?></td>
+        </tr>
+        <?php endwhile; ?>
+    </table>
 
-?>
+</body>
+</html>

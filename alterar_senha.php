@@ -4,21 +4,19 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $nova_senha = $_POST['nova_senha']; // troca de senha
+        $nova_senha = $_POST['nova_senha']; 
 
-        // verifica se a senha está de acrodo com os parametros pedidos
         if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,16}$/', $nova_senha)) {
             die("Senha inválida! Deve conter letras maiúsculas, minúsculas e números.");
         }
 
-        $senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT); // cria um novo hash para essa senha
-        $idFunc = $_SESSION['idFunc']; // busca pelo usuario dessa senha e atualiza apenas no campo desse usuario, garantindo que nao mude a senha de outro usuario.
+        $senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
+        $idFunc = $_SESSION['idFunc']; 
 
-        $sql = "UPDATE funcionarios SET senha=? WHERE idFunc=?"; // altera a senha no banco de dados
-        $stmt = $conn->prepare($sql); // prepara a query (é uma solicitação enviada a um banco de dados para realizar operações com os dados armazenados)
-        $stmt->bind_param("si", $senha_hash, $idFunc); // s - 'string' e i - 'integer' (para o idFunc)
+        $sql = "UPDATE funcionarios SET senha=? WHERE idFunc=?"; 
+        $stmt = $conn->prepare($sql); 
+        $stmt->bind_param("si", $senha_hash, $idFunc); 
 
-        // executa o statement (query preparada)
         if ($stmt->execute()) {
             echo "Senha atualizada com sucesso!";
         } else {
@@ -33,7 +31,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alteração de Senhas</title>
-         <style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        * {
+            font-family: "Poppins", sans-serif;
+        }
         body { 
             background-color:rgba(255, 254, 186, 1);
             display: flex;

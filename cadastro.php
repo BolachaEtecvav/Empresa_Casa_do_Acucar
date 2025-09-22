@@ -1,11 +1,39 @@
 <?php
-
     include "sessao.php";
-    // verifica se o usuario é um gerente para deixar que entre nessa pagina
     if ($_SESSION['funcao'] != 'gerente') {
         die("Acesso negado!");
     }
-    ?>
+
+    include "conexao.php";
+
+    function validarSenha($senha) {
+        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,16}$/', $senha);
+    }
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nickname = $_POST['nickname'];
+        $senha = $_POST['senha'];
+        $nomeCompleto = $_POST['nomeCompleto'];
+        $email = $_POST['email'];
+        $funcao = $_POST['funcao'];
+
+        if (!validarSenha($senha)) {
+            die("Senha Inválida!");
+        }
+
+        $senha = password_hash($senha, PASSWORD_DEFAULT);
+
+        $stmt = $conn->prepare("INSERT INTO funcionarios (nickname, senha, nomeCompleto, email, funcao) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $nickname, $senha, $nomeCompleto, $email, $funcao);
+
+        if ($stmt->execute()) {
+            echo "Funcionário cadastrado com sucesso!";
+        } else {
+            echo "Erro: " . $stmt->error;
+        }
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +41,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastros</title>
-         <style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+        
         body { 
-            background-color:rgba(255, 254, 186, 1);
+            background-color: #ffd9a0ff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -92,40 +125,4 @@
 </body>
 </html>
 
-<?php
-
-    include "conexao.php";
-    // verifica se a senha possui todos os parametros pedidos
-    function validarSenha($senha) {
-        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,16}$/', $senha);
-    }
-
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // armazena todas as informacoes colocadas no formulario
-        $nickname = $_POST['nickname'];
-        $senha = $_POST['senha'];
-        $nomeCompleto = $_POST['nomeCompleto'];
-        $email = $_POST['email'];
-        $funcao = $_POST['funcao'];
-        // caso a senha nao possua todos os parametos ira aparecer que a senha está inválida e nao deixará que seja cadastrado
-        if (!validarSenha($senha)) {
-            die("Senha Inválida!");
-        }
-
-        // cria um hash para a senha
-        $senha = password_hash($senha, PASSWORD_DEFAULT);
-        // prepara um statement juntamente com os seus placeholders (lemento usado em consultas SQL preparadas para indicar onde valores serão inseridos posteriormente)
-        $stmt = $conn->prepare("INSERT INTO funcionarios (nickname, senha, nomeCompleto, email, funcao) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $nickname, $senha, $nomeCompleto, $email, $funcao); // indica que todos os campos sao strings e associa as variaveis aos placeholders
-
-        // executa o statement (query preparada)
-        if ($stmt->execute()) {
-            echo "Funcionário cadastrado com sucesso!";
-        } else {
-            echo "Erro: " . $stmt->error;
-        }
-    }
-
-?>
 

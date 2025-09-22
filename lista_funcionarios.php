@@ -7,11 +7,18 @@
         die("Você não tem acesso! Apenas gerentes podem acessar estas páginas!");
     }
 
-    $resultado = $conn->query("SELECT idFunc, nickname, nomeCompleto, email, funcao FROM funcionarios");
+    $resultado = $conn->query("SELECT idFunc, nickname, nomeCompleto, email, funcao FROM funcionarios WHERE funcao <> 'gerente'");
+?>
 
-        echo 
-    "<style>
- body {
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+        body {
             margin: 20px;
             background-color:rgba(255, 254, 186, 1);
         }
@@ -71,25 +78,37 @@
             background-color:rgba(250, 199, 255, 1);
             text-decoration: none;
         }
-    </style>";
-    echo "<h2>Funcionários Cadastrados</h2>";
-    echo "<table border='1'>
-    <tr><th>ID</th><th>Nickname</th><th>Nome</th><th>Email</th><th>Função</th><th>Ações</th></tr>";
+    </style>
+</head>
+<body>
+    <a href='dashboard.php' class="voltar">Voltar</a>
 
-    while ($linha = $resultado->fetch_assoc()) {
-        echo "<tr>
-            <td>{$linha['idFunc']}</td>
-            <td>{$linha['nickname']}</td>
-            <td>{$linha['nomeCompleto']}</td>
-            <td>{$linha['email']}</td>
-            <td>{$linha['funcao']}</td>
+    <h2>Funcionários</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nickname</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Função</th>
+            <th>Ações</th>
+        </tr>
+
+    <?php while ($linha = $resultado->fetch_assoc()): ?>
+        <tr>
+            <td><?php $linha['idFunc']?></td>
+            <td><?php $linha['nickname']?></td>
+            <td><?php $linha['nomeCompleto']?></td>
+            <td><?php $linha['email']?></td>
+            <td><?php $linha['funcao']?></td>
             <td>
-                <a href='editar_informacoes_funcionario.php?id={$linha['idFunc']}'>Editar</a> |
-                <a href='excluir_funcionario.php?id={$linha['idFunc']}' onclick=\"return confirm('Tem certeza que deseja excluir?');\">Excluir</a>
+                <a href='editar_informacoes_funcionario.php?id=<?php $linha['idFunc']?>'>Editar</a> 
+                <a href='excluir_funcionario.php?id=<?php $linha['idFunc']?>' onclick='return confirm("Tem certeza que deseja excluir?")'>Excluir</a>
             </td>
-        </tr>";
-    }
-    echo "</table>";
-    echo "<br><a href='homepage.php'>Voltar a HomePage</a>";
+        </tr>
+        <?php endwhile; ?>
+    </table>;
+    <br><a href='homepage.php'>Voltar a HomePage</a>;
 
 ?>

@@ -2,21 +2,17 @@
     include 'conexao.php';
     include 'sessao.php';
 
-    // verifica se o usuario é um gerente para deixar que entre nessa pagina
     if ($_SESSION['funcao'] != 'gerente') {
         die("Acesso negado!");
     }
 
-    // pega o id da url
     $idProduto = $_GET['idProduto'] ?? null;
 
-    // busca os dados do produto selecionado
     $stmt = $conn->prepare("SELECT idProduto, nomeProduto, preco FROM produtos WHERE idProduto = ?");
     $stmt->bind_param("i", $idProduto);
     $stmt->execute();
     $produto = $stmt->get_result()->fetch_assoc();
 
-    // caso o produto nao exista no banco de dados
     if (!$produto) {
         echo "Produto não encontrado!";
         header("Location: selecionar_produto_preco.php");
@@ -25,13 +21,12 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $novo_preco = $_POST['preco']; // editar preco
+        $novo_preco = $_POST['preco']; 
         
-        $sql = "UPDATE produtos SET preco=? WHERE idProduto=?"; // altera o produto no banco de dados
-        $stmt = $conn->prepare($sql); // prepara a query (é uma solicitação enviada a um banco de dados para realizar operações com os dados armazenados)
-        $stmt->bind_param("di", $novo_preco, $idProduto); //  i - 'integer' (para o idProduto)
+        $sql = "UPDATE produtos SET preco=? WHERE idProduto=?"; 
+        $stmt = $conn->prepare($sql); 
+        $stmt->bind_param("di", $novo_preco, $idProduto); 
 
-        // executa o statement (query preparada)
         if ($stmt->execute()) {
             echo "Produto atualizado com sucesso!";
         } else {
@@ -45,6 +40,10 @@
 <head>
     <title>Alteração de Preços</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        * {
+            font-family: "Poppins", sans-serif;
+        }
         body { 
             background-color:rgba(255, 254, 186, 1);
             margin: 20px; 
