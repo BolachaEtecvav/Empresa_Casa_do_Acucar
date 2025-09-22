@@ -45,7 +45,7 @@
             font-family: "Poppins", sans-serif;
         }
         body { 
-            background-color:rgba(255, 254, 186, 1);
+            background-color: #ffd9a0ff;
             margin: 20px; 
         }
         h1{

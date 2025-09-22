@@ -54,7 +54,7 @@
             font-family: "Poppins", sans-serif;
         }
         body { 
-            background-color:rgba(255, 254, 186, 1);
+            background-color: #ffd9a0ff;
             display: flex;
             justify-content: center;
             align-items: center;

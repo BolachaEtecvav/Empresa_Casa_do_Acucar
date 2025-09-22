@@ -20,7 +20,7 @@
         }
         body {
             margin: 20px;
-            background-color:rgba(255, 254, 186, 1);
+            background-color: #ffd9a0ff;
         }
         h2 {
             font-size: 40px;

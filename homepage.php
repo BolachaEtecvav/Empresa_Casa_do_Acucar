@@ -61,7 +61,7 @@
             cursor: pointer; 
         }
 
-        // 
+        
         .buttons {
             display: flex;
             flex-direction: column;
@@ -86,7 +86,6 @@
             background-color: #c74d94ff;
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
-        //
     </style>
 </head>
 <body>
